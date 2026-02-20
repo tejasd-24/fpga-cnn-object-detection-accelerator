@@ -29,7 +29,7 @@ Input Image (128×128×1)
 ┌─────────────────────────────────────────────┐
 │         FPGA ACCELERATOR (PL)               │
 │                                             │
-│  Layer 1: Conv3×3 (1→16ch) → ReLU → Pool2  │
+│  Layer 1: Conv3×3 (1→16ch) → ReLU → Pool2   │
 │           128×128 → 64×64, 16 channels      │
 │                                             │
 │  Layer 2: Conv3×3 (16→32ch) → ReLU → Pool2  │
@@ -48,7 +48,7 @@ Input Image (128×128×1)
 │         ARM CPU (PS)                        │
 │                                             │
 │  Spatial bin pooling (4×4 grid) → 1024 feat │
-│  Linear classifier → 6-class softmax       │
+│  Linear classifier → 6-class softmax        │
 │  CAM-based bounding box generation          │
 └─────────────────────────────────────────────┘
     │
