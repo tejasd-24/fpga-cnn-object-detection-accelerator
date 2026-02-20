@@ -8,7 +8,7 @@ A fully custom **3-layer Convolutional Neural Network accelerator** implemented 
 
 | Metric | Value |
 |--------|-------|
-| **Real-time FPS** | **18 FPS** (FPGA) vs 3.7 FPS (ARM C-optimized) |
+| **Real-time FPS** | **22 FPS** (FPGA) vs 3.7 FPS (ARM C-optimized) |
 | **FPGA inference time** | **6.8 ms** per image |
 | **FPGA speedup vs ARM** | **~5×** faster (vs optimized C on Cortex-A9) |
 | **Classification accuracy** | **56.1%** across 6 classes (3.4× random chance) |
