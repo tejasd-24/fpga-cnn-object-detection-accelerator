@@ -23,9 +23,9 @@ A fully custom **3-layer Convolutional Neural Network accelerator** implemented 
 All compute-intensive CNN operations run entirely on the FPGA fabric:
 
 ```
-Input Image (128×128×1)
-    │
-    ▼
+           Input Image (128×128×1)
+                      │
+                      ▼
 ┌─────────────────────────────────────────────┐
 │         FPGA ACCELERATOR (PL)               │
 │                                             │
@@ -41,9 +41,9 @@ Input Image (128×128×1)
 │  16 parallel conv cores × accumulator       │
 │  All feature maps stored in on-chip BRAM    │
 └─────────────────────────────────────────────┘
-    │
-    ▼  64 × 16 × 16 feature maps (read via AXI-Lite)
-    │
+                      │
+                      ▼    64 × 16 × 16 feature maps (read via AXI-Lite)
+                      │
 ┌─────────────────────────────────────────────┐
 │         ARM CPU (PS)                        │
 │                                             │
@@ -51,8 +51,8 @@ Input Image (128×128×1)
 │  Linear classifier → 6-class softmax        │
 │  CAM-based bounding box generation          │
 └─────────────────────────────────────────────┘
-    │
-    ▼
+                     │
+                     ▼
   Prediction + Bounding Box + Annotated JPEG
 ```
 
