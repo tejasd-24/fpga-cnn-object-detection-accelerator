@@ -199,7 +199,7 @@ Open `http://<pynq-ip>:5000` in a browser for the live MJPEG stream with detecti
 ### Real-Time Performance (USB Webcam)
 | Mode | FPS | Inference | Method |
 |------|-----|-----------|--------|
-| **FPGA** | **18** | 7ms conv + 18ms read | Custom 3-layer CNN in hardware |
+| **FPGA** | **22** | 7ms conv + 18ms read | Custom 3-layer CNN in hardware |
 | **ARM (C-opt)** | **3.7** | 248ms | Same CNN, optimized C on Cortex-A9 |
 | ARM (numpy) | 0.3 | 3300ms | Same CNN, pure numpy (baseline) |
 
