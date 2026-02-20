@@ -23,37 +23,37 @@ A fully custom **3-layer Convolutional Neural Network accelerator** implemented 
 All compute-intensive CNN operations run entirely on the FPGA fabric:
 
 ```
-                                    Input Image (128×128×1)
-                                               │
-                                               ▼
-                         ┌─────────────────────────────────────────────┐
-                         │         FPGA ACCELERATOR (PL)               │
-                         │                                             │
-                         │  Layer 1: Conv3×3 (1→16ch) → ReLU → Pool2   │
-                         │           128×128 → 64×64, 16 channels      │
-                         │                                             │
-                         │  Layer 2: Conv3×3 (16→32ch) → ReLU → Pool2  │
-                         │           64×64 → 32×32, 32 channels        │
-                         │                                             │
-                         │  Layer 3: Conv3×3 (32→64ch) → ReLU → Pool2  │
-                         │           32×32 → 16×16, 64 channels        │
-                         │                                             │
-                         │  16 parallel conv cores × accumulator       │
-                         │  All feature maps stored in on-chip BRAM    │
-                         └─────────────────────────────────────────────┘
-                                               │
-                                               ▼    64 × 16 × 16 feature maps (read via AXI-Lite)
-                                               │
-                         ┌─────────────────────────────────────────────┐
-                         │         ARM CPU (PS)                        │
-                         │                                             │
-                         │  Spatial bin pooling (4×4 grid) → 1024 feat │
-                         │  Linear classifier → 6-class softmax        │
-                         │  CAM-based bounding box generation          │
-                         └─────────────────────────────────────────────┘
-                                              │
-                                              ▼
-                           Prediction + Bounding Box + Annotated JPEG
+                                            Input Image (128×128×1)
+                                                       │
+                                                       ▼
+                                 ┌─────────────────────────────────────────────┐
+                                 │         FPGA ACCELERATOR (PL)               │
+                                 │                                             │
+                                 │  Layer 1: Conv3×3 (1→16ch) → ReLU → Pool2   │
+                                 │           128×128 → 64×64, 16 channels      │
+                                 │                                             │
+                                 │  Layer 2: Conv3×3 (16→32ch) → ReLU → Pool2  │
+                                 │           64×64 → 32×32, 32 channels        │
+                                 │                                             │
+                                 │  Layer 3: Conv3×3 (32→64ch) → ReLU → Pool2  │
+                                 │           32×32 → 16×16, 64 channels        │
+                                 │                                             │
+                                 │  16 parallel conv cores × accumulator       │
+                                 │  All feature maps stored in on-chip BRAM    │
+                                 └─────────────────────────────────────────────┘
+                                                       │
+                                                       ▼    64 × 16 × 16 feature maps (read via AXI-Lite)
+                                                       │
+                                 ┌─────────────────────────────────────────────┐
+                                 │         ARM CPU (PS)                        │
+                                 │                                             │
+                                 │  Spatial bin pooling (4×4 grid) → 1024 feat │
+                                 │  Linear classifier → 6-class softmax        │
+                                 │  CAM-based bounding box generation          │
+                                 └─────────────────────────────────────────────┘
+                                                      │
+                                                      ▼
+                                   Prediction + Bounding Box + Annotated JPEG
 ```
 
 ### Hardware Pipeline Detail
