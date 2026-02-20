@@ -1,6 +1,6 @@
 # FPGA Based CNN Accelerator
 
-A fully custom **3-layer Convolutional Neural Network accelerator** implemented in Verilog and deployed on a **PYNQ Z2 (Zynq-7020)** FPGA board. Performs real-time object detection via USB webcam at **18 FPS** — all convolution, ReLU, and pooling computed entirely in FPGA hardware at **~7ms per image**.
+A fully custom **3-layer Convolutional Neural Network accelerator** implemented in Verilog and deployed on a **PYNQ Z2 (Zynq-7020)** FPGA board. Performs real-time object detection via USB webcam at **22 FPS** — all convolution, ReLU, and pooling computed entirely in FPGA hardware at **~7ms per image**.
 
 ---
 
