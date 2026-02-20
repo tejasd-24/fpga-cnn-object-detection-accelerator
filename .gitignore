@@ -1,0 +1,28 @@
+# Vivado build artifacts
+cnn_accn.cache/
+cnn_accn.gen/
+cnn_accn.hw/
+cnn_accn.ip_user_files/
+cnn_accn.runs/
+cnn_accn.sim/
+cnn_accn.tmp/
+*.jou
+*.log
+ip_upgrade.log
+
+# Python
+__pycache__/
+*.pyc
+
+# Test images (too many .bin files — keep weights.bin only)
+training/fpga_weights/test_image_*.bin
+
+# Large data files
+training/fpga_features.npz
+training/fpga_calibration_images/
+training/fpga_calibration_images.zip
+training/data/
+
+# OS
+.DS_Store
+*~
