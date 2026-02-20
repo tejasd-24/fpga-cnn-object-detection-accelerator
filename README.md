@@ -1,10 +1,10 @@
-# NeuralVerilog — FPGA CNN Accelerator
+# FPGA Based CNN Accelerator
 
 A fully custom **3-layer Convolutional Neural Network accelerator** implemented in Verilog and deployed on a **PYNQ Z2 (Zynq-7020)** FPGA board. Performs real-time object detection via USB webcam at **18 FPS** — all convolution, ReLU, and pooling computed entirely in FPGA hardware at **~7ms per image**.
 
 ---
 
-## ✨ Highlights
+## Highlights
 
 | Metric | Value |
 |--------|-------|
@@ -17,7 +17,7 @@ A fully custom **3-layer Convolutional Neural Network accelerator** implemented 
 | **Input resolution** | 128 × 128 grayscale |
 | **Classes** | airplane, cat, zebra, bus, bicycle, donut |
 
-## 🏗️ Architecture
+## Architecture
 
 ### What Runs on FPGA (Programmable Logic)
 All compute-intensive CNN operations run entirely on the FPGA fabric:
@@ -68,7 +68,7 @@ Each of the 3 CNN layers executes this pipeline in hardware:
 
 The FSM (`layer_fsm.v`) orchestrates all 3 layers sequentially, managing weight loading, channel tiling, and feature BRAM read/write addressing.
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 fpga-cnn-object-detection-accelerator/
@@ -122,7 +122,7 @@ fpga-cnn-object-detection-accelerator/
 └── docs/                                 # Documentation & diagrams
 ```
 
-## 🔧 How It Works
+## How It Works
 
 ### 1. Train the CNN (on laptop/GPU)
 ```bash
@@ -183,7 +183,7 @@ python3 realtime_detect.py --mode arm --res 320x240
 
 Open `http://<pynq-ip>:5000` in a browser for the live MJPEG stream with detection overlay.
 
-## 📊 Results
+## Results
 
 ### Per-Class Accuracy
 | Class | Accuracy | Samples |
@@ -205,7 +205,7 @@ Open `http://<pynq-ip>:5000` in a browser for the live MJPEG stream with detecti
 
 **FPGA speedup: ~5× vs optimized ARM C**
 
-## 🛠️ FPGA Resource Usage
+## FPGA Resource Usage
 
 - **Target:** Xilinx Zynq-7020 (PYNQ Z2)
 - **Convolution cores:** 16 parallel (processes 16 output channels simultaneously)
@@ -214,7 +214,7 @@ Open `http://<pynq-ip>:5000` in a browser for the live MJPEG stream with detecti
 - **Weight BRAM:** 23,184 × 8-bit
 - **Clock:** 50 MHz
 
-## 🔬 Proof of FPGA Acceleration
+## Proof of FPGA Acceleration
 
 Everything below the classifier runs on FPGA hardware — here's the evidence:
 
@@ -227,7 +227,7 @@ Everything below the classifier runs on FPGA hardware — here's the evidence:
 
 The **only** ARM-side computation is the final classifier: spatial bin pooling → linear layer → softmax → CAM bounding box.
 
-## 📋 Requirements
+## Requirements
 
 ### Hardware
 - PYNQ Z2 board (Zynq-7020)
@@ -245,7 +245,7 @@ The **only** ARM-side computation is the final classifier: spatial bin pooling �
 - NumPy, Pillow (pre-installed on PYNQ)
 - pynq library (pre-installed on PYNQ)
 
-## 📝 Key Design Decisions
+## Key Design Decisions
 
 - **8-bit quantization** — Weights stored as signed int8, activations as unsigned uint8, matching FPGA's integer arithmetic
 - **Tiled accumulation** — Accumulator BRAM reduced from 16K to 4K entries by processing input channels in tiles of 16
@@ -253,11 +253,11 @@ The **only** ARM-side computation is the final classifier: spatial bin pooling �
 - **CAM-based localization** — Class Activation Maps with saturated channel filtering and percentile-based thresholding for bounding box generation
 - **Class-balanced training** — Inverse-frequency loss weighting handles imbalanced class distribution (62-100 samples per class)
 
-## 📜 License
+## License
 
 This project is for educational and research purposes.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - [PYNQ](http://www.pynq.io/) framework for Zynq FPGA development
 - [MS COCO](https://cocodataset.org/) dataset for training images
