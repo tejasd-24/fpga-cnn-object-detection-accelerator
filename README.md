@@ -27,7 +27,7 @@ All compute-intensive CNN operations run entirely on the FPGA fabric:
                                                        │
                                                        ▼
                                  ┌─────────────────────────────────────────────┐
-                                 │         FPGA ACCELERATOR (PL)               │
+                                 │            FPGA ACCELERATOR (PL)            │
                                  │                                             │
                                  │  Layer 1: Conv3×3 (1→16ch) → ReLU → Pool2   │
                                  │           128×128 → 64×64, 16 channels      │
@@ -45,7 +45,7 @@ All compute-intensive CNN operations run entirely on the FPGA fabric:
                                                        ▼    64 × 16 × 16 feature maps (read via AXI-Lite)
                                                        │
                                  ┌─────────────────────────────────────────────┐
-                                 │         ARM CPU (PS)                        │
+                                 │                ARM CPU (PS)                 │
                                  │                                             │
                                  │  Spatial bin pooling (4×4 grid) → 1024 feat │
                                  │  Linear classifier → 6-class softmax        │
